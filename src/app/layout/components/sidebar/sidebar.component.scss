@@ -1,0 +1,13 @@
+.sidebar {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .list-item {
+  }
+  .btn {
+    width: 150px;
+    margin: 20px;
+  }
+}

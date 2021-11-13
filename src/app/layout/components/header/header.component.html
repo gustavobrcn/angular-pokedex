@@ -1,0 +1,22 @@
+<mat-toolbar color="warn" class="header">
+  <span><a [routerLink]="['/']">Pokedex</a> </span>
+  <form class="example-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Search Pokemon</mat-label>
+      <input
+        id="text"
+        name="text"
+        matInput
+        [(ngModel)]="text"
+        placeholder="Pokemon Name or ID"
+      />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      (click)="handleSearch()"
+      [routerLink]="['/search']"
+    >
+      <mat-icon aria-hidden="false" aria-label="search icon">search</mat-icon>
+    </button>
+  </form>
+</mat-toolbar>
