@@ -18,7 +18,7 @@ export class GenPageComponent implements OnInit {
     '7': { start: 722, end: 809 },
     '8': { start: 810, end: 898 },
   };
-  pokemon!: any;
+  allPokemon!: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,8 +28,8 @@ export class GenPageComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const gen = params['genNum'];
-      this.pokemon = this.pokeService.getPokemonByGeneration(this.gens[gen]);
-      console.log(this.pokemon);
+      this.allPokemon = this.pokeService.getPokemonByGeneration(this.gens[gen]);
+      console.log(this.allPokemon);
     });
   }
 }

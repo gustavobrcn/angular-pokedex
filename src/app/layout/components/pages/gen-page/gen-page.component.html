@@ -1,1 +1,5 @@
-<p>gen-page works!</p>
+<mat-grid-list cols="4" rowHeight="500px">
+  <mat-grid-tile *ngFor="let pokemon of allPokemon"
+    ><app-poke-card [pokemon]="pokemon"></app-poke-card
+  ></mat-grid-tile>
+</mat-grid-list>

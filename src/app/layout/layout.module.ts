@@ -14,6 +14,8 @@ import { GenPageComponent } from './components/pages/gen-page/gen-page.component
 import { SearchPageComponent } from './components/pages/search-page/search-page.component';
 import { MainPageComponent } from './components/pages/main-page/main-page.component';
 import { RouterModule } from '@angular/router';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { PokeCardComponent } from './components/poke-card/poke-card.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { RouterModule } from '@angular/router';
     GenPageComponent,
     SearchPageComponent,
     MainPageComponent,
+    PokeCardComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +37,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     MatListModule,
     RouterModule,
+    MatGridListModule,
   ],
   exports: [HeaderComponent, SidebarComponent],
 })

@@ -11,10 +11,6 @@ import { PokemonService } from 'src/app/service/pokemon.service';
 export class SearchPageComponent implements OnInit {
   nameOrId!: string;
   pokemon!: any;
-  pokemonName!: string;
-  pokemonType!: string;
-  pokemonImage!: string;
-  x: any = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -26,16 +22,16 @@ export class SearchPageComponent implements OnInit {
       this.nameOrId = params['nameOrId'];
       this.pokeService.getPokemon(this.nameOrId).subscribe((data) => {
         this.getPokemonData(data);
-        this.x.push(data);
-        console.log(this.x);
       });
     });
   }
 
   getPokemonData = (data: any) => {
-    this.pokemon = data;
-    this.pokemonName = data.species.name;
-    this.pokemonType = data.types[0].type.name;
-    this.pokemonImage = data.sprites.other['official-artwork'].front_default;
+    this.pokemon = {
+      id: data.id,
+      name: data.species.name,
+      type: data.types[0].type.name,
+      image: data.sprites.other['official-artwork'].front_default,
+    };
   };
 }

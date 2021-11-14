@@ -39,11 +39,22 @@ export class PokemonService {
     const pokemon: any = [];
     for (let i = range.start; i <= range.end; i++) {
       const data = this.getPokemon(i).subscribe((data) => {
-        pokemon.push(data);
+        pokemon.push(this.getPokemonData(data));
       });
     }
     return pokemon;
   }
+
+  getPokemonData = (data: any) => {
+    const pokemon = {
+      id: data.id,
+      name: data.species.name,
+      type: data.types[0].type.name,
+      image: data.sprites.other['official-artwork'].front_default,
+    };
+
+    return pokemon;
+  };
 }
 
 interface Range {
