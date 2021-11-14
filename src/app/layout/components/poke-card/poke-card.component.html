@@ -3,12 +3,19 @@
   [ngStyle]="{ 'background-color': pokeTypes[pokemon.type] }"
 >
   <div class="card-content">
-    <img src="{{ pokemon.image }}" alt="Pokemon Image" class="poke-image" />
+    <div class="poke-image">
+      <img src="{{ pokemon.image }}" alt="Pokemon Image" />
+    </div>
     <div class="poke-info">
-      <span>{{ pokemon.id }}</span>
-      <h3>{{ pokemon.name }}</h3>
-      <small>
-        <span>{{ pokemon.type }}</span>
+      <span class="number">#{{ pokemon.id.toString().padStart(3, "0") }}</span>
+      <h3 [ngStyle]="addStyle(pokeTypes[pokemon.type])" class="name">
+        {{ pokemon.name }}
+      </h3>
+      <hr />
+      <small class="type">
+        <span [ngStyle]="addStyle(pokeTypes[pokemon.type])">{{
+          pokemon.type
+        }}</span>
       </small>
     </div>
   </div>

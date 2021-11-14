@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonService } from 'src/app/service/pokemon.service';
+import { Pokemon } from '../../../../../pokemon';
 
 @Component({
   selector: 'app-gen-page',
@@ -29,7 +30,11 @@ export class GenPageComponent implements OnInit {
     this.route.params.subscribe((params) => {
       const gen = params['genNum'];
       this.allPokemon = this.pokeService.getPokemonByGeneration(this.gens[gen]);
-      console.log(this.allPokemon);
+      this.allPokemon = this.allPokemon.sort(
+        (firstEl: Pokemon, secondEl: Pokemon) => {
+          return firstEl.id - secondEl.id;
+        }
+      );
     });
   }
 }

@@ -1,3 +1,5 @@
-<div *ngIf="pokemon" class="content">
-  <app-poke-card [pokemon]="pokemon"></app-poke-card>
-</div>
+<mat-grid-list cols="1" rowHeight="4:3" class="poke-container">
+  <mat-grid-tile>
+    <app-poke-card [pokemon]="pokemon"></app-poke-card>
+  </mat-grid-tile>
+</mat-grid-list>
