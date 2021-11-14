@@ -4,17 +4,18 @@
     <mat-form-field appearance="fill">
       <mat-label>Search Pokemon</mat-label>
       <input
+        type="text"
         id="text"
         name="text"
-        matInput
         [(ngModel)]="text"
+        matInput
         placeholder="Pokemon Name or ID"
       />
     </mat-form-field>
     <button
       mat-raised-button
       (click)="handleSearch()"
-      [routerLink]="['/search']"
+      [routerLink]="['/search', text]"
     >
       <mat-icon aria-hidden="false" aria-label="search icon">search</mat-icon>
     </button>

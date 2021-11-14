@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MatFormFieldControl } from '@angular/material/form-field';
 import { PokemonService } from 'src/app/service/pokemon.service';
+import { SearchService } from 'src/app/service/search.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,16 +12,19 @@ export class HeaderComponent implements OnInit {
   text!: string;
   @Output() searchPokemon = new EventEmitter();
 
-  constructor(private pokeService: PokemonService) {}
+  constructor(
+    private search: SearchService,
+    private pokeService: PokemonService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
   handleSearch = () => {
-    this.pokeService.getPokemon(this.text).subscribe((pokemon) => {
-      console.log(pokemon);
-    });
+    if (!this.text) {
+      return;
+    }
 
     this.text = '';
-    this.searchPokemon.emit();
   };
 }

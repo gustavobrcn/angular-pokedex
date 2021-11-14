@@ -1,1 +1,5 @@
-<p>search-page works!</p>
+<div *ngIf="pokemon">
+  <p>{{ pokemonName }}</p>
+  <p>{{ pokemonType }}</p>
+  <img src="{{ pokemonImage }}" alt="" />
+</div>
