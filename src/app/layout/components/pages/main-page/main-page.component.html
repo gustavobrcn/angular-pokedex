@@ -1,1 +1,17 @@
-<h1>Hello Trainer!</h1>
+<mat-grid-list
+  cols="1"
+  rowHeight="1:1"
+  class="container"
+  [ngStyle]="{ 'background-color': pokeTypes[pokemon.type] }"
+>
+  <mat-grid-tile>
+    <div class="selected-pokemon">
+      <div class="poke-image">
+        <img src="{{ pokemon.image }}" alt="pokemon image" />
+      </div>
+      <h1>{{ pokemon.id }}</h1>
+      <h1>{{ pokemon.name }}</h1>
+      <h1>{{ pokemon.type }}</h1>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

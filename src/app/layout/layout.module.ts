@@ -16,6 +16,7 @@ import { MainPageComponent } from './components/pages/main-page/main-page.compon
 import { RouterModule } from '@angular/router';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { PokeCardComponent } from './components/poke-card/poke-card.component';
+import { SelectedComponent } from './components/selected/selected.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PokeCardComponent } from './components/poke-card/poke-card.component';
     SearchPageComponent,
     MainPageComponent,
     PokeCardComponent,
+    SelectedComponent,
   ],
   imports: [
     CommonModule,

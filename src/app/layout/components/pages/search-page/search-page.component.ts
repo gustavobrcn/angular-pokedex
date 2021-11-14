@@ -10,7 +10,7 @@ import { PokemonService } from 'src/app/service/pokemon.service';
 })
 export class SearchPageComponent implements OnInit {
   nameOrId!: string;
-  pokemon!: any;
+  pokemon!: Pokemon;
 
   constructor(
     private route: ActivatedRoute,

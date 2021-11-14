@@ -34,11 +34,11 @@ export class PokeCardComponent implements OnInit {
   ngOnInit(): void {}
 
   addStyle = (typeColor: string): Object => {
-    if (typeColor === '#FFFA24') {
+    if (typeColor === '#FFFA24' || typeColor === '#BDDD6E') {
       return {
         color: this.pokeTypes[this.pokemon.type],
         'text-shadow':
-          '1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000',
+          '2px 0 0 #000, 0 -1px 0 #000, 0 2px 0 #000, -1px 0 0 #000',
       };
     } else {
       return {
