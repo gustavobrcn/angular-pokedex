@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, of } from 'rxjs';
-import { Pokemon } from 'src/app/models/Pokemon.model';
+import { Pokemon } from 'src/app/models/pokemon.model';
 import { PokemonService } from 'src/app/service/pokemon.service';
 import { Generation } from 'src/app/constants';
 

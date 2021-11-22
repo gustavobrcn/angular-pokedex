@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin, map, Observable } from 'rxjs';
-import { Pokemon } from '../models/Pokemon.model';
+import { Pokemon } from '../models/pokemon.model';
 import { GenMap, idRangeByGeneration } from '../constants/generations';
 
 @Injectable({
