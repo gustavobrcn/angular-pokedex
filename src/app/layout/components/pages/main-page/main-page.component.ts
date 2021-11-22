@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Pokemon } from 'src/app/models/Pokemon.model';
 import { PokemonService } from 'src/app/service/pokemon.service';
-import { Pokemon } from 'src/pokemon';
 
 @Component({
   selector: 'app-main-page',
@@ -8,7 +9,7 @@ import { Pokemon } from 'src/pokemon';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
-  pokemon!: Pokemon;
+  $pokemon = new Observable<Pokemon>();
 
   pokeTypes: Types = {
     normal: '#ACA974',
@@ -34,24 +35,11 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     const ranNum = this.getRandomInt(899);
-    this.pokeService.getPokemon(ranNum).subscribe((data) => {
-      this.pokemon = this.getPokemonData(data);
-    });
+    this.$pokemon = this.pokeService.getPokemon(ranNum);
   }
 
   getRandomInt = (max: number) => {
     return Math.floor(Math.random() * max);
-  };
-
-  getPokemonData = (data: any) => {
-    const pokemon = {
-      id: data.id,
-      name: data.species.name,
-      type: data.types[0].type.name,
-      image: data.sprites.other['official-artwork'].front_default,
-    };
-
-    return pokemon;
   };
 }
 

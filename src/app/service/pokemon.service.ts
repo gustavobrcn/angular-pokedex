@@ -1,67 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Pokemon } from '../../pokemon';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
-};
+import { forkJoin, map, Observable } from 'rxjs';
+import { Pokemon } from '../models/Pokemon.model';
+import { GenMap, idRangeByGeneration } from '../utils/constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
   private apiUrl: string = 'https://pokeapi.co/api/v2/pokemon';
-  private gens: GenMap = {
-    '1': { start: 1, end: 151 },
-    '2': { start: 152, end: 251 },
-    '3': { start: 252, end: 386 },
-    '4': { start: 387, end: 493 },
-    '5': { start: 494, end: 649 },
-    '6': { start: 650, end: 721 },
-    '7': { start: 722, end: 809 },
-    '8': { start: 810, end: 898 },
-  };
 
   searchedPokemon!: Pokemon;
 
   constructor(private http: HttpClient) {}
 
-  getPokemon = (idOrName: string | number): Observable<any> => {
+  getPokemon = (idOrName: string | number): Observable<Pokemon> => {
     const url = `${this.apiUrl}/${idOrName}`;
 
-    return this.http.get<any>(url);
+    return this.http.get<any>(url).pipe(map(Pokemon.fromJson));
   };
 
-  getPokemonByGeneration(range: Range) {
-    const pokemon: any = [];
+  getPokemonByGeneration(generation: keyof GenMap): Observable<Pokemon[]> {
+    const range = idRangeByGeneration[generation];
+    const pokemon: Observable<Pokemon>[] = [];
+
     for (let i = range.start; i <= range.end; i++) {
-      const data = this.getPokemon(i).subscribe((data) => {
-        pokemon.push(this.getPokemonData(data));
-      });
+      const observable = this.getPokemon(i);
+      pokemon.push(observable);
     }
-    return pokemon;
+
+    // return a single observable that emits an array of pokemon
+    return forkJoin(pokemon);
   }
-
-  getPokemonData = (data: any) => {
-    const pokemon = {
-      id: data.id,
-      name: data.species.name,
-      type: data.types[0].type.name,
-      image: data.sprites.other['official-artwork'].front_default,
-    };
-
-    return pokemon;
-  };
-}
-
-interface Range {
-  start: number;
-  end: number;
-}
-
-interface GenMap {
-  [key: string]: Range;
 }
