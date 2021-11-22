@@ -11,7 +11,7 @@ import { PokemonService } from 'src/app/service/pokemon.service';
 })
 export class SearchPageComponent implements OnInit {
   nameOrId!: string;
-  pokemon = new Observable<Pokemon>();
+  $pokemon = new Observable<Pokemon>();
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +21,7 @@ export class SearchPageComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.nameOrId = params['nameOrId'];
-      this.pokemon = this.pokeService.getPokemon(this.nameOrId);
+      this.$pokemon = this.pokeService.getPokemon(this.nameOrId);
     });
   }
 }

@@ -1,6 +1,6 @@
 <div
   class="poke-card"
-  [ngStyle]="{ 'background-color': pokeTypes[pokemon.type] }"
+  [ngStyle]="{ 'background-color': pokemon.getTypeColor() }"
 >
   <div class="card-content">
     <div class="poke-image">
@@ -8,12 +8,12 @@
     </div>
     <div class="poke-info">
       <span class="number">#{{ pokemon.id.toString().padStart(3, "0") }}</span>
-      <h3 [ngStyle]="addStyle(pokeTypes[pokemon.type])" class="name">
+      <h3 [ngStyle]="addStyle(pokemon.getTypeColor())" class="name">
         {{ pokemon.name }}
       </h3>
       <hr />
       <small class="type">
-        <span [ngStyle]="addStyle(pokeTypes[pokemon.type])">{{
+        <span [ngStyle]="addStyle(pokemon.getTypeColor())">{{
           pokemon.type
         }}</span>
       </small>

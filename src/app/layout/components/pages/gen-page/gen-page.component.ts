@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, of } from 'rxjs';
 import { Pokemon } from 'src/app/models/Pokemon.model';
 import { PokemonService } from 'src/app/service/pokemon.service';
-import { Generation } from 'src/app/utils/constants';
+import { Generation } from 'src/app/constants';
 
 @Component({
   selector: 'app-gen-page',

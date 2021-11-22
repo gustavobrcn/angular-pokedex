@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin, map, Observable } from 'rxjs';
 import { Pokemon } from '../models/Pokemon.model';
-import { GenMap, idRangeByGeneration } from '../utils/constants';
+import { GenMap, idRangeByGeneration } from '../constants/generations';
 
 @Injectable({
   providedIn: 'root',
