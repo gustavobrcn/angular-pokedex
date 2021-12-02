@@ -2,7 +2,8 @@
   cols="1"
   rowHeight="1:1"
   class="container"
-  [ngStyle]="{ 'background-color': pokeTypes[pokemon.type] }"
+  *ngIf="$pokemon | async as pokemon"
+  [ngStyle]="{ 'background-color': pokemon.getTypeColor() }"
 >
   <mat-grid-tile>
     <div class="selected-pokemon">

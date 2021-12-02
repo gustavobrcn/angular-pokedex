@@ -1,5 +1,8 @@
 <mat-grid-list cols="1" rowHeight="16:10" class="poke-container">
   <mat-grid-tile>
-    <app-poke-card [pokemon]="pokemon"></app-poke-card>
+    <app-poke-card
+      *ngIf="$pokemon | async as pokemon"
+      [pokemon]="pokemon"
+    ></app-poke-card>
   </mat-grid-tile>
 </mat-grid-list>

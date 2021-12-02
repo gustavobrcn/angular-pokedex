@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { map, of } from 'rxjs';
+import { Pokemon } from 'src/app/models/pokemon.model';
 import { PokemonService } from 'src/app/service/pokemon.service';
-import { Pokemon } from '../../../../../pokemon';
+import { Generation } from 'src/app/constants';
 
 @Component({
   selector: 'app-gen-page',
@@ -9,17 +11,7 @@ import { Pokemon } from '../../../../../pokemon';
   styleUrls: ['./gen-page.component.scss'],
 })
 export class GenPageComponent implements OnInit {
-  private gens: GenMap = {
-    '1': { start: 1, end: 151 },
-    '2': { start: 152, end: 251 },
-    '3': { start: 252, end: 386 },
-    '4': { start: 387, end: 493 },
-    '5': { start: 494, end: 649 },
-    '6': { start: 650, end: 721 },
-    '7': { start: 722, end: 809 },
-    '8': { start: 810, end: 898 },
-  };
-  allPokemon!: any;
+  $allPokemon = of<Pokemon[]>([]);
 
   constructor(
     private route: ActivatedRoute,
@@ -28,22 +20,14 @@ export class GenPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      const gen = params['genNum'];
-      this.allPokemon = this.pokeService.getPokemonByGeneration(this.gens[gen]);
-      this.allPokemon = this.allPokemon.sort(
-        (firstEl: Pokemon, secondEl: Pokemon) => {
-          return firstEl.id - secondEl.id;
-        }
+      const gen = params['genNum'] as Generation;
+      this.$allPokemon = this.pokeService.getPokemonByGeneration(gen).pipe(
+        map((pokemon) =>
+          pokemon.sort((firstEl: Pokemon, secondEl: Pokemon) => {
+            return firstEl.id - secondEl.id;
+          })
+        )
       );
     });
   }
-}
-
-interface Range {
-  start: number;
-  end: number;
-}
-
-interface GenMap {
-  [key: string]: Range;
 }
